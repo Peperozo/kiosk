@@ -26,7 +26,7 @@ public class Main {
 		System.out.printf( "5. %-20s | %s", "Order", "장바구니를 확인 후 주문합니다.\n" );
 		System.out.printf( "6. %-20s | %s", "Cancel", "진행중인 주문을 취소합니다.\n" );
 		System.out.println( "7. 종료" );
-		System.out.print( "메뉴를 선택해 주세요 : " );
+		System.out.print( "메뉴를 선택해 주세요 : " );;
 	}
 
 	public static void prepareBurgerList() {
