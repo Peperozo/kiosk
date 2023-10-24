@@ -1,3 +1,5 @@
+package kiosk;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class OrderHistory {
 			System.out.println();
 			System.out.println( "1. 돌아가기" );
 			System.out.print( "동작을 입력해 주세요. : " );
-			int selectNum = Main.input.nextInt();
+			int selectNum = KioskMain.input.nextInt();
 			if( selectNum == 1 ) {
 				return;
 			}

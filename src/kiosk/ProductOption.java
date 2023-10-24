@@ -1,3 +1,5 @@
+package kiosk;
+
 import lombok.Getter;
 
 @Getter

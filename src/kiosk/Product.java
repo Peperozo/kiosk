@@ -1,8 +1,9 @@
+package kiosk;
+
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 @Getter
 public class Product extends Menu implements Cloneable {
@@ -64,7 +65,7 @@ public class Product extends Menu implements Cloneable {
 					System.out.printf( "%d. 옵션 선택하지 않기.\n", enable_options.size() + 1 );
 					System.out.print( "메뉴를 선택해 주세요. : " );
 
-					int selectNum = Main.input.nextInt();
+					int selectNum = KioskMain.input.nextInt();
 					System.out.println();
 					if( 0 < selectNum && selectNum <= enable_options.size() ) {
 						select_options.add( enable_options.get( selectNum - 1 ).clone() );
@@ -82,7 +83,7 @@ public class Product extends Menu implements Cloneable {
 					System.out.println( "위 메뉴를 장바구니에 추가하시겠습니까?" );
 					System.out.println( "1. 확인     2. 취소" );
 					System.out.print( "번호를 선택해 주세요 : " );
-					int selectNum = Main.input.nextInt();
+					int selectNum = KioskMain.input.nextInt();
 					System.out.println();
 					return selectNum == 1;
 				}

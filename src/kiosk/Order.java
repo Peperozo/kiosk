@@ -1,3 +1,5 @@
+package kiosk;
+
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -43,10 +45,10 @@ public class Order implements Cloneable {
 		System.out.printf( "W %d\n", getTotalPrice() );
 		System.out.println();
 		System.out.print( "주문 요청사항(20자 제한) : " );
-		orderReq = Main.input.next();
+		orderReq = KioskMain.input.next();
 		System.out.println( "1. 주문     2. 메뉴판" );
 		System.out.print( "동작을 선택해 주세요. : " );
-		int selectNum = Main.input.nextInt();
+		int selectNum = KioskMain.input.nextInt();
 		return selectNum == 1;
 	}
 
