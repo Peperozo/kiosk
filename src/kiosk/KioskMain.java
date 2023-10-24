@@ -1,5 +1,7 @@
 package kiosk;
 
+import manager.ManagerMain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -162,6 +164,7 @@ public class KioskMain {
 						boolean orderOK = order.showOrderList();
 						if( orderOK ) {
 							orderHistory.addOrder( order.clone() );
+							ManagerMain.orderList.add( order.clone() );
 							order.clearAllCart();
 
 							System.out.println( "주문이 완료되었습니다!" );
