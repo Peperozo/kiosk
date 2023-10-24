@@ -21,6 +21,9 @@ public class Order implements Cloneable {
 		return orderedProductList.stream().mapToInt( Product::getTotalPrice ).sum();
 	}
 
+	private String orderReq;
+	private int orderNumber;
+
 	public boolean showOrderList() throws InterruptedException {
 		if( orderedProductList.isEmpty() ) {
 			System.out.println( "현재 장바구니에 아무것도 없습니다." );
@@ -39,6 +42,8 @@ public class Order implements Cloneable {
 		System.out.println( "[ Total ]" );
 		System.out.printf( "W %d\n", getTotalPrice() );
 		System.out.println();
+		System.out.print( "주문 요청사항(20자 제한) : " );
+		orderReq = Main.input.next();
 		System.out.println( "1. 주문     2. 메뉴판" );
 		System.out.print( "동작을 선택해 주세요. : " );
 		int selectNum = Main.input.nextInt();
