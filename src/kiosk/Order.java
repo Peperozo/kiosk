@@ -1,6 +1,7 @@
 package kiosk;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,13 @@ public class Order implements Cloneable {
 
 	private String orderReq;
 	private int orderNumber;
+
+	public enum orderState {
+		ready,
+		complete,
+	};
+	@Setter
+	private orderState state;
 
 	public boolean showOrderList() throws InterruptedException {
 		if( orderedProductList.isEmpty() ) {

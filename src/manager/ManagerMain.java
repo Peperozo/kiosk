@@ -27,6 +27,7 @@ public class ManagerMain {
 			{
 				case 1 : {
 					for( Order o : orderList ) {
+						//o.setState( Order.orderState.ready );
 						for( Product p : o.getOrderedProductList() ) {
 							System.out.println( p.getName() + " " + p.getDescription() );
 						}
