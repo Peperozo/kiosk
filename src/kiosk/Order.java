@@ -43,7 +43,7 @@ public class Order implements Cloneable {
 		ready,
 		complete,
 	};
-	private orderState state;
+	private orderState state = orderState.ready;
 	public orderState getState() {
 		return state;
 	}

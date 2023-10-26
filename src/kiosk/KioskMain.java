@@ -27,9 +27,10 @@ public class KioskMain {
 		System.out.printf( "4. %-20s | %s", "Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주\n" );
 		System.out.println();
 		System.out.println( "[ ORDER MENU ]" );
-		System.out.printf( "5. %-20s | %s", "kiosk.Order", "장바구니를 확인 후 주문합니다.\n" );
+		System.out.printf( "5. %-20s | %s", "Order", "장바구니를 확인 후 주문합니다.\n" );
 		System.out.printf( "6. %-20s | %s", "Cancel", "진행중인 주문을 취소합니다.\n" );
-		System.out.println( "7. 종료" );
+		System.out.println( "7. 주문 현황 확인" );
+		System.out.println( "8. 종료" );
 		System.out.print( "메뉴를 선택해 주세요 : " );
 	}
 
@@ -187,7 +188,28 @@ public class KioskMain {
 
 						break;
 					}
-					case 7: {
+					case 7 : {
+
+						List< Order > orderList = ManagerMain.orderList;
+						var completeList = orderList.stream().filter( o->o.getState() == Order.orderState.complete ).toList();
+						System.out.println( "[ 최근 완료된 주문 목록 ]" );
+						for( int i = 0; i < completeList.size() && i < 3; i++ ) {
+							Order o = completeList.get( i );
+							System.out.println( "주문번호 : " + o.getOrderNumber() + " 요청사항 : " +o.getOrderReq() );
+						}
+						System.out.println();
+						System.out.println( "[ 대기중인 주문 목록 ]" );
+						var readyList = orderList.stream().filter( o->o.getState() == Order.orderState.ready ).toList();
+						for( Order o : readyList ) {
+							System.out.println( "주문번호 : " + o.getOrderNumber() + " 요청사항 : " + o.getOrderReq() );
+						}
+						System.out.println();
+						System.out.println( "3초후 돌아갑니다." );
+						Thread.sleep( 3000 );
+
+						break;
+					}
+					case 8: {
 						System.out.println( "프로그램을 종료 합니다." );
 						//input.close();
 						running = false;
