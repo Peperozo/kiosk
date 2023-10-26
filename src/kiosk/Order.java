@@ -24,7 +24,20 @@ public class Order implements Cloneable {
 	}
 
 	private String orderReq;
+	public void setOrderReq( String req ) {
+		this.orderReq = req;
+	}
+	public String getOrderReq() {
+		return orderReq;
+	}
+
 	private int orderNumber;
+	public void setOrderNumber( int n ) {
+		this.orderNumber = n;
+	}
+	public int getOrderNumber() {
+		return orderNumber;
+	}
 
 	public enum orderState {
 		ready,

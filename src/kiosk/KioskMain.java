@@ -164,12 +164,12 @@ public class KioskMain {
 						boolean orderOK = order.showOrderList();
 						if( orderOK ) {
 							orderHistory.addOrder( order.clone() );
-							ManagerMain.orderList.add( order.clone() );
+							ManagerMain.addOrder( order.clone() );
 							order.clearAllCart();
 
 							System.out.println( "주문이 완료되었습니다!" );
 							System.out.println();
-							System.out.println( "대기번호는 [ 1 ] 번 입니다." );
+							System.out.printf( "대기번호는 [ %d ] 번 입니다.\n", ManagerMain.getLastOrderNumber() );
 							System.out.println( "( 3초후 메뉴판으로 돌아갑니다. )" );
 							Thread.sleep( 3000 );
 						}

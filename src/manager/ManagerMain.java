@@ -11,6 +11,15 @@ public class ManagerMain {
 
 	public static List< Order > orderList = new ArrayList<>();
 
+	private static int orderTotalNumber = 1;
+	public static void addOrder( Order o ) {
+		o.setOrderNumber( orderTotalNumber++ );
+		orderList.add( o );
+	}
+	public static int getLastOrderNumber() {
+		return orderList.get( orderList.size() - 1 ).getOrderNumber();
+	}
+
 	public static void manager_main_menu() {
 		Scanner sc = new Scanner( System.in );
 		while( true ) {
