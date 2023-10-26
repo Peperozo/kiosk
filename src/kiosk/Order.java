@@ -1,16 +1,15 @@
 package kiosk;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
-@Getter
 public class Order implements Cloneable {
 
 	private List< Product > orderedProductList = new ArrayList<>();
+	public List< Product > getOrderedProductList() {
+		return orderedProductList;
+	}
 
 	public void addCart( Product p ) {
 		orderedProductList.add( p );
@@ -31,8 +30,13 @@ public class Order implements Cloneable {
 		ready,
 		complete,
 	};
-	@Setter
 	private orderState state;
+	public orderState getState() {
+		return state;
+	}
+	public void setState( orderState state ) {
+		this.state = state;
+	}
 
 	public boolean showOrderList() throws InterruptedException {
 		if( orderedProductList.isEmpty() ) {

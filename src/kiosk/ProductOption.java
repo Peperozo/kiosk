@@ -1,11 +1,12 @@
 package kiosk;
 
-import lombok.Getter;
 
-@Getter
 public class ProductOption extends Menu implements Cloneable {
 	// 패티, 머스타드, 치즈 등등 제품에 추가 할 수 있는 옵션.
 	private final int price;
+	public int getPrice() {
+		return price;
+	}
 
 	public ProductOption( String name, int price, String description ) {
 		super.name = name;

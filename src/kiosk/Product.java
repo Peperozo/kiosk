@@ -1,15 +1,16 @@
 package kiosk;
 
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 public class Product extends Menu implements Cloneable {
 	// 메인 제품들 ( 햄버거, 맥주, 음료수 등등 )
 
 	private final int price;
+	public int getPrice() {
+		return price;
+	}
 
 	// 해당 제품에 선택 가능한 옵션들.
 	private List< ProductOption > enable_options;
