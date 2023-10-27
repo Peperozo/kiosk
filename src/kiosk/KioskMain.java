@@ -5,15 +5,12 @@ import manager.ManagerMain;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class KioskMain {
 	static OrderHistory orderHistory = new OrderHistory();
 	static Order order = new Order();
-	public static List< Product > burgerList = new ArrayList<>();
-	static List< Product > frozenCustardList = new ArrayList<>();
-	static List< Product > drinkList = new ArrayList<>();
-	static List< Product > beerList = new ArrayList<>();
 	public static Scanner input = new Scanner( System.in );
 
 	static void print_main_menu() {
@@ -35,88 +32,31 @@ public class KioskMain {
 		System.out.print( "메뉴를 선택해 주세요 : " );
 	}
 
-	public static void prepareBurgerList() {
-		ProductOption beefPatty = new ProductOption( "패티 추가", 500, "소고기 패티 추가 1장" );
-		ProductOption mozzarellaCheese = new ProductOption( "모짜렐라 치즈 추가", 400, "모짜렐라 치즈 추가 1장" );
-		ProductOption bacon = new ProductOption( "베이컨 추가", 1000, "베이컨 추가 2장" );
-		ProductOption chedaCheese = new ProductOption( "체다 치즈 추가", 600, "고소한 체다 치즈 1장" );
-		ProductOption potatoBurn = new ProductOption( "포테이토 번", 1200, "감자 맛있겠다." );
-		ProductOption largeVegiterian = new ProductOption( "야채야채", 300, "야채 많이 주세요~" );
-
-		burgerList.add( new Product( "Shack Burger", 6900, "토마토, 양상추, 쉑소스가 토핑된 치즈버거" )
-				.addEnableOption( beefPatty )
-				.addEnableOption( mozzarellaCheese )
-		);
-		burgerList.add( new Product( "SmokeShack", 8900, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거" )
-				.addEnableOption( bacon )
-		);
-		burgerList.add( new Product( "Shroom Burger", 9400, "몬스터 치즈와 체다 치즈로 속을 채운 베지테리안 버거" )
-				.addEnableOption( chedaCheese )
-				.addEnableOption( potatoBurn )
-		);
-		burgerList.add( new Product( "Cheese Burger", 6900, "치즈 1장만 있는 전통 치즈 버거" )
-				.addEnableOption( mozzarellaCheese )
-				.addEnableOption( chedaCheese )
-				.addEnableOption( bacon )
-				.addEnableOption( largeVegiterian )
-		);
-		burgerList.add( new Product( "Hamburger", 5400, "소고기 패티만 들어간 기본 버거!" )
-				.addEnableOption( beefPatty )
-				.addEnableOption( mozzarellaCheese )
-				.addEnableOption( bacon )
-				.addEnableOption( chedaCheese )
-				.addEnableOption( potatoBurn )
-				.addEnableOption( largeVegiterian )
-		);
-	}
-
-	public static void prepareFrozenCustard() {
-		frozenCustardList.add( new Product( "Anthracite Shake", 6501, "로컬 로스팅 브랜드 앤트러사이트와 협업한 기간 한정 콜라보레이션 커피 쉐이크" ) );
-		frozenCustardList.add( new Product( "Classic Shakes", 6500, "쫀득하고 진한 커스터드가 들어간 클래식 쉐이크" ) );
-		frozenCustardList.add( new Product( "Floats", 6500, "부드러운 바닐라 커스터드와 톡톡 터지는 탄산이 만나 탄생한 색다른 음료" ) );
-	}
-
-	public static void prepareDrinks() {
-		ProductOption largeSizeUp = new ProductOption( "Large", 700, "큰걸로 마시고 싶다." );
-
-		drinkList.add( new Product( "Raspberry Lemonade", 4800, "쉐이크쉑 시그니처 레몬에이드에 상큼 달콤한 라즈베리가 더해진 시즌 한정 레몬에이드" )
-				.addEnableOption( largeSizeUp )
-		);
-		drinkList.add( new Product( "Lemonade", 4300, "매장에서 직접 만드는 상큼한 레몬에이드" )
-				.addEnableOption( largeSizeUp )
-		);
-		drinkList.add( new Product( "Brewed Iced Tea", 3500, "직접 유기농 홍차를 우려낸 아이스 티" )
-				.addEnableOption( largeSizeUp )
-		);
-	}
-
-	public static void prepareBeer() {
-		beerList.add( new Product( "Abita Root Beer", 4800, "마시면 물파스 맛이 나요!!" ) );
-	}
-
-	static void print_product_list( String title, List< Product > pl ) {
+	static void print_product_list( String title, Map<Integer, Product > pl ) {
 		while( true ) {
 			try {
 				System.out.println( "\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"" );
 				System.out.println( "아래 상품메뉴판을 보시고 상품을 골라 입력해주세요." );
 				System.out.println();
 				System.out.println( title );
-				for( int i = 0; i < pl.size(); i++ ) {
-					Product p = pl.get( i );
-					System.out.printf( "%d. %-20s | W %4.1f | %s\n", i + 1, p.getName(), p.getPrice() / 1000.0, p.getDescription() );
+				System.out.printf( "%2d. %-20s\n", 0, "돌아가기" );
+				for( var entry : pl.entrySet() ) {
+					int key = entry.getKey();
+					Product p = entry.getValue();
+					System.out.printf( "%2d. %-20s | W %4.1f | %s\n", key, p.getName(), p.getPrice() / 1000.0, p.getDescription() );
 				}
-				System.out.printf( "%d. %-20s\n", pl.size() + 1, "돌아가기" );
 				System.out.print( "상품을 선택해 주세요 : " );
 				int selectNum = input.nextInt();
 				System.out.println();
-				if( 0 < selectNum && selectNum <= pl.size() ) {
-					Product p = pl.get( selectNum - 1 ).clone();
+				if( selectNum == 0 ) {
+					break;
+				}
+				else if( pl.containsKey( selectNum ) ) {
+					Product p = pl.get( selectNum ).clone();
 					boolean addCart = p.selectProduct();
 					if( addCart ) {
 						order.addCart( p );
 					}
-				} else if( selectNum == pl.size() + 1 ) {
-					break;
 				} else {
 					System.out.println( "메뉴를 잘못 선택하셨습니다. 다시 확인해 주세요." );
 				}
@@ -130,10 +70,10 @@ public class KioskMain {
 
 	public static void kiosk_main_menu() {
 
-		prepareBurgerList();
-		prepareFrozenCustard();
-		prepareDrinks();
-		prepareBeer();
+		//prepareBurgerList();
+		//prepareFrozenCustard();
+		//prepareDrinks();
+		//prepareBeer();
 
 		boolean running = true;
 		while( running ) {
@@ -147,19 +87,19 @@ public class KioskMain {
 						break;
 					}
 					case 1: {
-						print_product_list( "[ Burger MENU ]", burgerList );
+						print_product_list( "[ Burger MENU ]", ManagerMain.burgerMap );
 						break;
 					}
 					case 2: {
-						print_product_list( "[ Frozen Custard MENU ]", frozenCustardList );
+						print_product_list( "[ Frozen Custard MENU ]", ManagerMain.frozenCustardMap );
 						break;
 					}
 					case 3: {
-						print_product_list( "[ Drinks MENU ]", drinkList );
+						print_product_list( "[ Drinks MENU ]", ManagerMain.drinkMap );
 						break;
 					}
 					case 4: {
-						print_product_list( "[ Beer MENU ]", beerList );
+						print_product_list( "[ Beer MENU ]", ManagerMain.beerMap );
 						break;
 					}
 					case 5: {
