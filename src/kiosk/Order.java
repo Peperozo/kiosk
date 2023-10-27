@@ -20,11 +20,18 @@ public class Order implements Cloneable {
 	public void clearAllCart() {
 		orderedProductList.clear();
 	}
+<<<<<<< HEAD
+
+=======
 	// getTotalPrice 접근 제이자를 private -> public으로 변경함 : jjk
+>>>>>>> main
 	public int getTotalPrice() {
 		return orderedProductList.stream().mapToInt( Product::getTotalPrice ).sum();
 	}
 
+<<<<<<< HEAD
+	public String orderReq;
+=======
 	private String orderReq;
 	public void setOrderReq( String req ) {
 		this.orderReq = req;
@@ -33,12 +40,17 @@ public class Order implements Cloneable {
 		return orderReq;
 	}
 
+>>>>>>> main
 	private int orderNumber;
 	public void setOrderNumber( int n ) {
 		this.orderNumber = n;
 	}
 	public int getOrderNumber() {
 		return orderNumber;
+	}
+
+	public String orderReq() {
+		return orderReq;
 	}
 
 	public enum orderState {
