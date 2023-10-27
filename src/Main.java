@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class Main {
 	public static void main( String... args ) {
 		Scanner sc = new Scanner( System.in );
+		new ManagerMain(); // 메뉴 초기 설정
+
 		while( true ) {
 			System.out.println();
 			System.out.println( "무엇을 실행 하시겠습니까?" );
