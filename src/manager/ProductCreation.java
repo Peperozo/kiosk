@@ -2,6 +2,9 @@ package manager;
 
 import kiosk.Product;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class ProductCreation {
@@ -10,6 +13,9 @@ public class ProductCreation {
     private String proName; // 상품명
     private String proPrice; // 상품 가격
     private String proDesc; // 상품 설명
+
+    HashMap<Integer, Product> newProductMap = new HashMap<>();
+    List<HashMap<Integer, Product>> newProductList = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
 
     void createProduct() {
@@ -36,12 +42,9 @@ public class ProductCreation {
         System.out.print("상품 이름 : ");
         proName = scan.nextLine();
         System.out.print("상품 가격 : ");
-        while (true) {
+        do {
             proPrice = scan.nextLine();
-            if (isDouble(proPrice)) {
-                break;
-            }
-        }
+        } while (!isDouble(proPrice));
         System.out.print("상품 설명 : ");
         proDesc = scan.nextLine();
     }
@@ -74,13 +77,7 @@ public class ProductCreation {
     }
 
     private void addProNew(){
-        ManagerMain.newMenuProduct.put(ManagerMain.proId++, new Object[]{mName, new Product(proName, Integer.parseInt(proPrice), proDesc)});
-
-        // 나중에 해당 메뉴에 상품 출력할 때 신규메뉴 value[0](Object)와 메뉴명(String)을 비교해서 값이 같으면 해당 메뉴에 출력???
-//        for (Object[] v : ManagerMain.newMenuProduct.values()) {
-//            if (mName.equals(v[0].toString())) {
-//                break;
-//            }
-//        }
+        newProductMap.put(ManagerMain.proId++, new Product(proName, Integer.parseInt(proPrice), proDesc)); // 맵에 새 상품 저장
+        newProductList.add(newProductMap); // 리스트에 맵 저장
     }
 }
