@@ -14,6 +14,15 @@ public class ManagerMain {
 
 	public static List< Order > orderList = new ArrayList<>();
 
+	private static int orderTotalNumber = 1;
+	public static void addOrder( Order o ) {
+		o.setOrderNumber( orderTotalNumber++ );
+		orderList.add( o );
+	}
+	public static int getLastOrderNumber() {
+		return orderList.get( orderList.size() - 1 ).getOrderNumber();
+	}
+
 	public static void manager_main_menu() {
 		Scanner sc = new Scanner( System.in );
 		while( true ) {
@@ -28,15 +37,25 @@ public class ManagerMain {
 			int selectNum = sc.nextInt();
 			switch( selectNum )
 			{
-				case 1 : {
-					for( Order o : orderList ) {
-						o.setState( Order.orderState.ready );
-						for( Product p : o.getOrderedProductList() ) {
-							System.out.println(p.getName() + " " + p.getDescription());
+				case 1: {
+					System.out.println("----------대기주문 목록---------- ");
+					for (Order order : orderList) {
+						if (order.getState() == Order.orderState.ready) {
+							System.out.println("1. 대기 번호: " + order.getOrderNumber());
+							System.out.println("2. 주문 상품 목록:");
+							for (Product product : order.getOrderedProductList()) {
+								System.out.println("   - " + product.getName() + ": " + product.getDescription());
+							}
+							System.out.println("3. 주문 총 가격: " + order.getTotalPrice());
+							System.out.println("4. 요청 사항: " + order.getOrderReq());
+							System.out.println("5. 주문 일시: " + order.getOrderTime()); // 예: 2016-10-27T17:13:40+00:00
+
+							System.out.println("주문이 완료 처리되었습니다.");
+							System.out.println("------------------------------ ");
 						}
 					}
-					break;
 				}
+				break;
 				case 2 : {
 					for( Order o : orderList ) {
 
@@ -46,18 +65,9 @@ public class ManagerMain {
 						System.out.println("1. 대기 번호: ");
 						System.out.println("2. 주문 상품 목록:");
 
-//						for( Product p : o.getOrderedProductList() ) {
-<<<<<<< HEAD
-							for (Product product : o.getOrderedProductList()) {
-								System.out.println("   " + product.getName() + " | " + product.getDescription());
-							}
-//						}}}}}
-=======
 						for (Product product : o.getOrderedProductList()) {
 							System.out.println("   " + product.getName() + " | " + product.getDescription());
 						}
-//						}
->>>>>>> main
 						System.out.println("3. 주문 총 가격: W " + o.getTotalPrice());
 						System.out.println("4. 주문 일시: ");
 						System.out.println("5. 요청 사항: " + o.orderReq());
