@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static kiosk.KioskMain.input;
 
 
 public class ManagerMain {
@@ -51,6 +52,16 @@ public class ManagerMain {
 	}
 	public static int getLastOrderNumber() {
 		return orderList.get( orderList.size() - 1 ).getOrderNumber();
+	}
+
+	// 삭제 기능 추가
+	public void deleteMenu(String menuToDelete) {
+		if (mainMenu.values().stream().anyMatch(value -> value[0].equals(menuToDelete))) {
+			mainMenu.values().removeIf(value -> value[0].equals(menuToDelete));
+			System.out.println("메뉴가 삭제되었습니다.");
+		} else {
+			System.out.println("해당 메뉴가 존재하지 않습니다.");
+		}
 	}
 
 	public static void manager_main_menu() {
@@ -116,7 +127,14 @@ public class ManagerMain {
 					});
 					System.out.println();
 					creation.createProduct();
+					break;
 				}
+				case 4:
+					System.out.print("삭제할 메뉴명을 입력하세요: ");
+					String menuToDelete = input.nextLine();
+					ManagerMain manager = new ManagerMain();
+					manager.deleteMenu(menuToDelete);
+					break;
 				case 5: {
 					return;
 				}
