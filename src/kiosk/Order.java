@@ -19,12 +19,16 @@ public class Order implements Cloneable {
 		orderedProductList.clear();
 	}
 
-	private int getTotalPrice() {
+	public int getTotalPrice() {
 		return orderedProductList.stream().mapToInt( Product::getTotalPrice ).sum();
 	}
 
-	private String orderReq;
+	public String orderReq;
 	private int orderNumber;
+
+	public String orderReq() {
+		return orderReq;
+	}
 
 	public enum orderState {
 		ready,
