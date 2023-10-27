@@ -2,6 +2,7 @@ package kiosk;
 
 import manager.ManagerMain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -164,6 +165,7 @@ public class KioskMain {
 					case 5: {
 						boolean orderOK = order.showOrderList();
 						if( orderOK ) {
+							order.setOrderTime(LocalDateTime.now() );
 							orderHistory.addOrder( order.clone() );
 							ManagerMain.addOrder( order.clone() );
 							order.clearAllCart();

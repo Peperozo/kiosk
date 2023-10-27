@@ -1,6 +1,8 @@
 package kiosk;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,8 +20,8 @@ public class Order implements Cloneable {
 	public void clearAllCart() {
 		orderedProductList.clear();
 	}
-
-	private int getTotalPrice() {
+	// getTotalPrice 접근 제이자를 private -> public으로 변경함 : jjk
+	public int getTotalPrice() {
 		return orderedProductList.stream().mapToInt( Product::getTotalPrice ).sum();
 	}
 
@@ -50,6 +52,16 @@ public class Order implements Cloneable {
 	public void setState( orderState state ) {
 		this.state = state;
 	}
+
+	private LocalDateTime orderTime;
+	public void setOrderTime( LocalDateTime time ) {
+		this.orderTime = time;
+	}
+	public LocalDateTime getOrderTime() {
+		return orderTime;
+	}
+
+
 
 	public boolean showOrderList() throws InterruptedException {
 		if( orderedProductList.isEmpty() ) {
