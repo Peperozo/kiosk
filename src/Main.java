@@ -23,7 +23,6 @@ public class Main {
 					KioskMain.kiosk_main_menu();
 					break;
 				}
-
 				case 2 : {
 					ManagerMain.manager_main_menu();
 					break;

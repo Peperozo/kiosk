@@ -52,16 +52,21 @@ public class ProductDelete {
             int menuToProduct = scan.nextInt();
             if (menuToProduct == 9000) { // 기존 메뉴 선택
                 selectProduct(ManagerMain.burgerMap);
+                break;
             } else if (menuToProduct == 9001) {
                 selectProduct(ManagerMain.frozenCustardMap);
+                break;
             } else if (menuToProduct == 9002) {
                 selectProduct(ManagerMain.drinkMap);
+                break;
             } else if (menuToProduct == 9003) {
                 selectProduct(ManagerMain.beerMap);
+                break;
             } else {
                 for (int i = 0; i < ProductCreation.menuArrayList.size(); i++) {
                     if (ProductCreation.menuArrayList.get(i).getMenuID() == menuToProduct) { // 같은 id 값을 가지고 있는 menuArrayList의 newProductMap 출력
                         selectProduct(ProductCreation.menuArrayList.get(i).newProductMap);
+                        break;
                     }
                 }
             }
