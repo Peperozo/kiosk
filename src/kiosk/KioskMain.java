@@ -26,7 +26,6 @@ public class KioskMain {
 		System.out.println( "아래 메뉴판을 보시고 메뉴를 골라 입력해주세요." );
 		System.out.println();
 		System.out.println( "[ SHAKESHACK MENU ]" );
-		System.out.println();
 		ManagerMain.mainMenu.forEach((key, value) -> { // 메인 메뉴 출력
 			System.out.printf("%d. %-20s | %s\n", menuNumber.getAndIncrement(), value[0], value[1]);
 			menuIdList.add(key); // 리스트에 순서대로 키값(메뉴 ID) 저장
@@ -34,9 +33,7 @@ public class KioskMain {
 		if(!ManagerMain.newMainMenu.isEmpty()) { // 새로운 메인 메뉴 출력
 			System.out.println();
 			System.out.println( "[ NEW MENU ]" );
-			System.out.println();
 			ManagerMain.newMainMenu.forEach( ( key, value ) -> {
-				//System.out.printf( "%d. %-20s | %s\n", menuNumber.getAndIncrement(), value.getName(), value.getDescription() );
 				System.out.printf( "%d. %-20s | %s\n", menuNumber.getAndIncrement(), value[0], value[1] );
 				menuIdList.add(key);
 			} );
@@ -89,9 +86,7 @@ public class KioskMain {
 		}
 	}
 
-
 	public static void kiosk_main_menu() {
-
 		boolean running = true;
 		while( running ) {
 			try {
