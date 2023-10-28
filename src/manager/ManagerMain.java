@@ -24,10 +24,10 @@ public class ManagerMain {
 
 	public ManagerMain() {
 		// 메뉴 초기 설정
-		mainMenu.put(menuId++, new String[]{"Burgers", "앵거스 비프 통살을 다져만든 버거"});
-		mainMenu.put(menuId++, new String[]{"Frozen Custard", "매장에서 신선하게 만드는 아이스크림"});
-		mainMenu.put(menuId++, new String[]{"Drinks", "매장에서 직접 만드는 음료"});
-		mainMenu.put(menuId++, new String[]{"Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주"});
+		mainMenu.put(9000, new String[]{"Burgers", "앵거스 비프 통살을 다져만든 버거"});
+		mainMenu.put(9001, new String[]{"Frozen Custard", "매장에서 신선하게 만드는 아이스크림"});
+		mainMenu.put(9002, new String[]{"Drinks", "매장에서 직접 만드는 음료"});
+		mainMenu.put(9003, new String[]{"Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주"});
 
 		burgerMap.put(productID++, new Product("Shack Burger", 6900, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
 		burgerMap.put(productID++, new Product("SmokeShack", 8900, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
