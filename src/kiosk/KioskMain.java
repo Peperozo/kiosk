@@ -80,12 +80,10 @@ public class KioskMain {
 
 
 	public static void kiosk_main_menu() {
-
 		//prepareBurgerList();
 		//prepareFrozenCustard();
 		//prepareDrinks();
 		//prepareBeer();
-
 		boolean running = true;
 		while( running ) {
 			try {
