@@ -17,11 +17,15 @@ public class Menu {
 		this.proDesc = proDesc;
 	}
 
+	public int getMenuID(){
+		return id;
+	}
+
 	public String getName(){
 		return name;
 	}
 
-	public int getMenuID(){
-		return id;
+	public String getProName(){
+		return proName;
 	}
 }
