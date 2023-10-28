@@ -1,6 +1,7 @@
 package kiosk;
 
 import manager.ManagerMain;
+import manager.ProductCreation;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,13 +31,14 @@ public class KioskMain {
 			System.out.printf("%d. %-20s | %s\n", menuNumber.getAndIncrement(), value[0], value[1]);
 			menuIdList.add(key); // 리스트에 순서대로 키값(메뉴 ID) 저장
 		});
-		if( ManagerMain.newMainMenu.isEmpty() == false ) {
+		if(!ManagerMain.newMainMenu.isEmpty()) { // 새로운 메인 메뉴 출력
 			System.out.println();
 			System.out.println( "[ NEW MENU ]" );
 			System.out.println();
 			ManagerMain.newMainMenu.forEach( ( key, value ) -> {
-				System.out.printf( "%d. %-20s | %s\n", menuNumber.getAndIncrement(), value.getName(), value.getDescription() );
-				menuIdList.add( key );
+				//System.out.printf( "%d. %-20s | %s\n", menuNumber.getAndIncrement(), value.getName(), value.getDescription() );
+				System.out.printf( "%d. %-20s | %s\n", menuNumber.getAndIncrement(), value[0], value[1] );
+				menuIdList.add(key);
 			} );
 		}
 		System.out.println();
@@ -149,7 +151,7 @@ public class KioskMain {
 					//input.close();
 					running = false;
 					break;
-				} else if(menuIdList.get(selectNum-1) == 9000) { // 메뉴 선택
+				} else if(menuIdList.get(selectNum-1) == 9000) { // 기존 메뉴 선택
 					print_product_list("[ Burger MENU ]", ManagerMain.burgerMap);
 					break;
 				} else if(menuIdList.get(selectNum-1) == 9001){
@@ -162,12 +164,13 @@ public class KioskMain {
 					print_product_list( "[ Beer MENU ]", ManagerMain.beerMap );
 					break;
 				}
-				else {
-					// 신메뉴
+				else { // 신메뉴
 					int newMenuId = menuIdList.get( selectNum-1 );
-					var menuItem = ManagerMain.newMainMenu.get( newMenuId );
-					print_product_list( menuItem.getName(), menuItem.productList );
-					break;
+					for (int i = 0; i < ProductCreation.menuArrayList.size(); i++){
+						if(ProductCreation.menuArrayList.get(i).getMenuID() == newMenuId){ // 같은 id 값을 가지고 있는 menuArrayList의 newProductMap 출력
+							print_product_list("[ " + ProductCreation.menuArrayList.get(i).getName() + "MENU ]", ProductCreation.menuArrayList.get(i).newProductMap);
+						}
+					}
 				}
 			}
 			catch( Exception ex ) {

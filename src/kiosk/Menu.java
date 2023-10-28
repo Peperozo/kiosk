@@ -3,16 +3,25 @@ package kiosk;
 import java.util.*;
 
 public class Menu {
-	String name;
-	String description;
+	int id; // 메뉴 id
+	String name; // 메뉴 이름
+	String proName, proPrice, proDesc; // 상품
 
-	public Map< Integer, Product > productList = new LinkedHashMap<>();
+	public Map< Integer, Product > newProductMap = new LinkedHashMap<>();
 
-	public Menu( String name, String desc ) {
+	public Menu( int id, String name, String proName, String proPrice, String proDesc ) {
 		this.name = name;
-		this.description = desc;
+		this.id = id;
+		this.proName = proName;
+		this.proPrice = proPrice;
+		this.proDesc = proDesc;
 	}
 
-	public String getName() { return name; }
-	public String getDescription() { return description; }
+	public String getName(){
+		return name;
+	}
+
+	public int getMenuID(){
+		return id;
+	}
 }

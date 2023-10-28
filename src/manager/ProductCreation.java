@@ -1,40 +1,51 @@
 package manager;
 
+import kiosk.Menu;
 import kiosk.Product;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class ProductCreation {
-    private String mName; // 메뉴명
+    private String menuName; // 메뉴명
     private String newMenuDesc; // 메뉴 설명
     private String proName; // 상품명
     private String proPrice; // 상품 가격
     private String proDesc; // 상품 설명
-
-    HashMap<Integer, Product> newProductMap = new HashMap<>();
-    List<HashMap<Integer, Product>> newProductList = new ArrayList<>();
+    public static ArrayList<Menu> menuArrayList = new ArrayList<>(); // Menu 클래스를 저장
     Scanner scan = new Scanner(System.in);
 
     void createProduct() {
         System.out.println("새로운 상품정보 입력");
         System.out.print("메뉴명 : ");
-        mName = scan.nextLine();
+        menuName = scan.nextLine();
 
         for (String[] values : ManagerMain.mainMenu.values()) {
-            if (values[0].equals(mName)) { // 기존 메뉴일 경우
+            if (values[0].equals(menuName)) { // 기존 메뉴일 경우
                 inputProduct(); // 상품 입력
                 addProExisting(); // 기존 메뉴에 상품 추가
                 return;
             }
         }
 
+        if(!ManagerMain.newMainMenu.isEmpty()){ // 입력한 메뉴가 새메뉴에 이미 존재할 경우
+            for (int i=0; i<menuArrayList.size(); i++){
+                if(menuName.equals(menuArrayList.get(i).getName())){
+                    inputProduct(); // 상품 입력
+                    // 리스트 i번째 요소의 productList 에 값 추가
+                    menuArrayList.get(i).newProductMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
+                    return;
+                }
+            }
+        }
+
         System.out.print("새로운 메뉴명입니다. 메뉴 설명을 입력해주세요.\n: ");
         newMenuDesc = scan.nextLine();
         inputProduct(); // 상품 입력
-        addProNew(); // 신규 메뉴에 상품 추가
+        ManagerMain.newMainMenu.put( ManagerMain.menuId, new String[]{menuName, newMenuDesc}); // 새로운 메뉴 추가
+        menuArrayList.add(new Menu(ManagerMain.menuId++, menuName, proName, proPrice, proDesc)); // menuArrayList에 새로운 Menu 인스턴스 추가
+        // 리스트 마지막 요소의 productList 에 값 추가
+        menuArrayList.get(menuArrayList.size()-1).newProductMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
     }
 
     private void inputProduct(){ // 상품 입력
@@ -59,7 +70,7 @@ public class ProductCreation {
     }
 
     private void addProExisting(){
-        switch (mName){
+        switch (menuName){
             case "Burgers":
                 ManagerMain.burgerMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
                 break;
@@ -77,11 +88,5 @@ public class ProductCreation {
                 break;
             }
         }
-    }
-
-    private void addProNew(){
-        kiosk.Menu newMenu = new kiosk.Menu( mName, newMenuDesc );
-        newMenu.productList.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
-        ManagerMain.newMainMenu.put( ManagerMain.menuId, newMenu );
     }
 }
