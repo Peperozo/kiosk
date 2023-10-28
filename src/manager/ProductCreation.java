@@ -62,22 +62,22 @@ public class ProductCreation {
     private void addProExisting(){
         switch (mName){
             case "Burgers":
-                ManagerMain.burgerMap.put(ManagerMain.proId++, new Product(proName, Integer.parseInt(proPrice), proDesc));
+                ManagerMain.burgerMap.put(ManagerMain.burgerID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
                 break;
             case "Forzen Custard":
-                ManagerMain.frozenCustardMap.put(ManagerMain.proId++, new Product(proName, Integer.parseInt(proPrice), proDesc));
+                ManagerMain.frozenCustardMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
                 break;
             case "drinkMap":
-                ManagerMain.drinkMap.put(ManagerMain.proId++, new Product(proName, Integer.parseInt(proPrice), proDesc));
+                ManagerMain.drinkMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
                 break;
             case "beerMap":
-                ManagerMain.beerMap.put(ManagerMain.proId++, new Product(proName, Integer.parseInt(proPrice), proDesc));
+                ManagerMain.beerMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
                 break;
         }
     }
 
     private void addProNew(){
-        newProductMap.put(ManagerMain.proId++, new Product(proName, Integer.parseInt(proPrice), proDesc)); // 맵에 새 상품 저장
+        newProductMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc)); // 맵에 새 상품 저장
         newProductList.add(newProductMap); // 리스트에 맵 저장
     }
 }

@@ -14,11 +14,9 @@ public class KioskMain {
 	static Order order = new Order();
 	public static Scanner input = new Scanner( System.in );
 
-
+	static int menuNum;
 	static AtomicInteger menuNumber = new AtomicInteger(1);
 	static AtomicInteger productNumber = new AtomicInteger(1);
-	static int menuNum;
-	static int productNum;
 	static ArrayList<Integer> menuIdList = new ArrayList<Integer>();
 
 	static void print_main_menu() {
@@ -46,7 +44,6 @@ public class KioskMain {
 
 	static void print_product_list( String title, Map<Integer, Product > pl ) {
 		while( true ) {
-			productNum = productNumber.get(); // productNumber 값 따로 저장 후
 			productNumber = new AtomicInteger(1); // productNumber 1로 초기화
 			try {
 				System.out.println( "\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"" );
@@ -57,15 +54,14 @@ public class KioskMain {
 				for( var entry : pl.entrySet() ) {
 					int key = entry.getKey();
 					Product p = entry.getValue();
-					System.out.printf("%2d. ID:%d %-20s | W %4.1f | %s\n", productNumber.getAndIncrement(), key, p.getName(), p.getPrice() / 1000.0, p.getDescription());
+					System.out.printf("%2d. ID%d %-20s | W %4.1f | %s\n", productNumber.getAndIncrement(), key, p.getName(), p.getPrice() / 1000.0, p.getDescription());
 				}
-				System.out.print( "상품 ID를 선택해 주세요 : " );
+				System.out.print( "상품 ID를 입력해 주세요 : " );
 				int selectNum = input.nextInt();
 				System.out.println();
 				if( selectNum == 0 ) {
 					break;
 				}
-				// ManagerMain.mainMenu.containsKey(menuIdList.get(selectNum-1))
 				else if( pl.containsKey( selectNum ) ) {
 					Product p = pl.get( selectNum ).clone();
 					boolean addCart = p.selectProduct();
