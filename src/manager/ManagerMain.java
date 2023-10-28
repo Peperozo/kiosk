@@ -19,10 +19,6 @@ public class ManagerMain {
 	public static Map<Integer, Product> beerMap = new LinkedHashMap<>();
 	static int menuId = 1; // 메인 메뉴 ID
 	static int productID = 1; // 상품 ID
-	static int burgerID = 1;
-	static int frozenCustardID = 1;
-	static int drinkID = 1;
-	static int burgerID = 1;
 
 	private static int orderTotalNumber = 1;
 
@@ -33,11 +29,11 @@ public class ManagerMain {
 		mainMenu.put(menuId++, new String[]{"Drinks", "매장에서 직접 만드는 음료"});
 		mainMenu.put(menuId++, new String[]{"Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주"});
 
-		burgerMap.put(burgerID++, new Product("Shack Burger", 6900, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
-		burgerMap.put(burgerID++, new Product("SmokeShack", 8900, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
-		burgerMap.put(burgerID++, new Product("Shroom Burger", 9400, "몬스터 치즈와 체다 치즈로 속을 채운 베지테리안 버거"));
-		burgerMap.put(burgerID++, new Product("Cheese Burger", 6900, "치즈 1장만 있는 전통 치즈 버거"));
-		burgerMap.put(burgerID++, new Product("Hamburger", 5400, "소고기 패티만 들어간 기본 버거!"));
+		burgerMap.put(productID++, new Product("Shack Burger", 6900, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
+		burgerMap.put(productID++, new Product("SmokeShack", 8900, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
+		burgerMap.put(productID++, new Product("Shroom Burger", 9400, "몬스터 치즈와 체다 치즈로 속을 채운 베지테리안 버거"));
+		burgerMap.put(productID++, new Product("Cheese Burger", 6900, "치즈 1장만 있는 전통 치즈 버거"));
+		burgerMap.put(productID++, new Product("Hamburger", 5400, "소고기 패티만 들어간 기본 버거!"));
 
 		frozenCustardMap.put(productID++, new Product( "Anthracite Shake", 6501, "로컬 로스팅 브랜드 앤트러사이트와 협업한 기간 한정 콜라보레이션 커피 쉐이크" ));
 		frozenCustardMap.put(productID++, new Product( "Classic Shakes", 6500, "쫀득하고 진한 커스터드가 들어간 클래식 쉐이크" ));

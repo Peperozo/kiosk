@@ -62,7 +62,7 @@ public class ProductCreation {
     private void addProExisting(){
         switch (mName){
             case "Burgers":
-                ManagerMain.burgerMap.put(ManagerMain.burgerID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
+                ManagerMain.burgerMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
                 break;
             case "Forzen Custard":
                 ManagerMain.frozenCustardMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
