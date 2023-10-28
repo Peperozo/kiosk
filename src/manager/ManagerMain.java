@@ -1,5 +1,6 @@
 package manager;
 
+import kiosk.Menu;
 import kiosk.Order;
 import kiosk.Product;
 
@@ -8,18 +9,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static kiosk.KioskMain.input;
 
-
 public class ManagerMain {
 
 	public static List< Order > orderList = new ArrayList<>();
 	public static Map<Integer, String[]> mainMenu = new LinkedHashMap<>(); // 메인 메뉴
+	//public static Map<Integer, Menu> newMainMenu = new LinkedHashMap<>(); // 신규 메뉴 추가 부분
+	public static Map<Integer, String[]> newMainMenu = new LinkedHashMap<>(); // 신규 메뉴 추가 부분
 	public static Map<Integer, Product> burgerMap = new LinkedHashMap<>(); // 상품
 	public static Map<Integer, Product> frozenCustardMap = new LinkedHashMap<>();
 	public static Map<Integer, Product> drinkMap = new LinkedHashMap<>();
 	public static Map<Integer, Product> beerMap = new LinkedHashMap<>();
-	static int menuId = 1; // 메인 메뉴 ID
-	static int productID = 1; // 상품 ID
-
+	public static int menuId = 1; // 메인 메뉴 ID
+	public static int productID = 1; // 상품 ID
 	private static int orderTotalNumber = 1;
 
 	public ManagerMain() {
@@ -57,7 +58,14 @@ public class ManagerMain {
 		if (mainMenu.keySet().stream().anyMatch(key -> key.equals(menuToDelete))) {
 			mainMenu.keySet().removeIf(key -> key == menuToDelete);
 			System.out.println("메뉴가 삭제되었습니다.");
-		} else {
+		} else if(!newMainMenu.isEmpty()) {
+			if (newMainMenu.keySet().stream().anyMatch(key -> key.equals(menuToDelete))) {
+				newMainMenu.keySet().removeIf(key -> key == menuToDelete);
+				System.out.println("메뉴가 삭제되었습니다.");
+			} else{
+				System.out.println("해당 메뉴가 존재하지 않습니다.");
+			}
+		}else{
 			System.out.println("해당 메뉴가 존재하지 않습니다.");
 		}
 	}
@@ -123,6 +131,11 @@ public class ManagerMain {
 					mainMenu.forEach((key, value) -> { // 메인 메뉴 출력
 						System.out.printf("%d. %-20s | %s\n", menuNum.getAndIncrement(), value[0], value[1]);
 					});
+					if(!newMainMenu.isEmpty()) {
+						newMainMenu.forEach((key, value) -> { // 새로운 메인 메뉴 출력
+							System.out.printf("%d. %-20s | %s\n", menuNum.getAndIncrement(), value[0], value[1]);
+						});
+					}
 					System.out.println();
 					creation.createProduct();
 					break;
@@ -131,6 +144,11 @@ public class ManagerMain {
 					mainMenu.forEach((key, value) -> { // 메인 메뉴 출력
 						System.out.printf("ID%d. %-20s | %s\n", key, value[0], value[1]);
 					});
+					if(!newMainMenu.isEmpty()) {
+						newMainMenu.forEach((key, value) -> { // 새로운 메인 메뉴 출력
+							System.out.printf("ID%d. %-20s | %s\n", key, value[0], value[1]);
+						});
+					}
 					System.out.print("삭제할 메뉴의 ID를 입력하세요: ");
 					int menuToDelete = input.nextInt();
 					deleteMenu(menuToDelete);

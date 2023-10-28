@@ -4,9 +4,16 @@ package kiosk;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Product extends Menu implements Cloneable {
+public class Product implements Cloneable {
 	// 메인 제품들 ( 햄버거, 맥주, 음료수 등등 )
-
+	private String name;
+	public String getName() {
+		return name;
+	}
+	private String description;
+	public String getDescription() {
+		return description;
+	}
 	private final int price;
 	public int getPrice() {
 		return price;
@@ -19,9 +26,9 @@ public class Product extends Menu implements Cloneable {
 	private List< ProductOption > select_options;
 
 	public Product( String name, int price, String description ) {
-		super.name = name;
+		this.name = name;
 		this.price = price;
-		super.description = description;
+		this.description = description;
 
 		this.enable_options = new ArrayList<>();
 		this.select_options = new ArrayList<>();
