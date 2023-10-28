@@ -55,7 +55,7 @@ public class ManagerMain {
 	}
 
 	// 삭제 기능 추가
-	public void deleteMenu(String menuToDelete) {
+	public static void deleteMenu(String menuToDelete) {
 		if (mainMenu.values().stream().anyMatch(value -> value[0].equals(menuToDelete))) {
 			mainMenu.values().removeIf(value -> value[0].equals(menuToDelete));
 			System.out.println("메뉴가 삭제되었습니다.");
@@ -130,10 +130,13 @@ public class ManagerMain {
 					break;
 				}
 				case 4:
+					AtomicInteger menuNum = new AtomicInteger(1);
+					mainMenu.forEach((key, value) -> { // 메인 메뉴 출력
+						System.out.printf("%d. %-20s | %s\n", menuNum.getAndIncrement(), value[0], value[1]);
+					});
 					System.out.print("삭제할 메뉴명을 입력하세요: ");
 					String menuToDelete = input.nextLine();
-					ManagerMain manager = new ManagerMain();
-					manager.deleteMenu(menuToDelete);
+					deleteMenu(menuToDelete);
 					break;
 				case 5: {
 					return;
