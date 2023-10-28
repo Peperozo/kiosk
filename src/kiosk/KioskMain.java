@@ -164,6 +164,7 @@ public class KioskMain {
 					for (int i = 0; i < ProductCreation.menuArrayList.size(); i++){
 						if(ProductCreation.menuArrayList.get(i).getMenuID() == newMenuId){ // 같은 id 값을 가지고 있는 menuArrayList의 newProductMap 출력
 							print_product_list("[ " + ProductCreation.menuArrayList.get(i).getName() + "MENU ]", ProductCreation.menuArrayList.get(i).newProductMap);
+							break;
 						}
 					}
 				}
