@@ -1,17 +1,25 @@
 package kiosk;
 
 
-public class ProductOption extends Menu implements Cloneable {
+public class ProductOption implements Cloneable {
 	// 패티, 머스타드, 치즈 등등 제품에 추가 할 수 있는 옵션.
 	private final int price;
 	public int getPrice() {
 		return price;
 	}
+	private String name;
+	public String getName() {
+		return name;
+	}
+	private String description;
+	public String getDescription() {
+		return description;
+	}
 
 	public ProductOption( String name, int price, String description ) {
-		super.name = name;
+		this.name = name;
 		this.price = price;
-		super.description = description;
+		this.description = description;
 	}
 
 	@Override

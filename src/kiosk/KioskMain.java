@@ -30,6 +30,15 @@ public class KioskMain {
 			System.out.printf("%d. %-20s | %s\n", menuNumber.getAndIncrement(), value[0], value[1]);
 			menuIdList.add(key); // 리스트에 순서대로 키값(메뉴 ID) 저장
 		});
+		if( ManagerMain.newMainMenu.isEmpty() == false ) {
+			System.out.println();
+			System.out.println( "[ NEW MENU ]" );
+			System.out.println();
+			ManagerMain.newMainMenu.forEach( ( key, value ) -> {
+				System.out.printf( "%d. %-20s | %s\n", menuNumber.getAndIncrement(), value.getName(), value.getDescription() );
+				menuIdList.add( key );
+			} );
+		}
 		System.out.println();
 		System.out.println( "[ ORDER MENU ]" );
 		System.out.printf( "%d. %-20s | %s", menuNumber.get(), "Order", "장바구니를 확인 후 주문합니다.\n" );
@@ -80,10 +89,7 @@ public class KioskMain {
 
 
 	public static void kiosk_main_menu() {
-		//prepareBurgerList();
-		//prepareFrozenCustard();
-		//prepareDrinks();
-		//prepareBeer();
+
 		boolean running = true;
 		while( running ) {
 			try {
@@ -155,10 +161,14 @@ public class KioskMain {
 				} else if(menuIdList.get(selectNum-1) == 9003){
 					print_product_list( "[ Beer MENU ]", ManagerMain.beerMap );
 					break;
-				} //else if(){
+				}
+				else {
 					// 신메뉴
-					//break;
-				//}
+					int newMenuId = menuIdList.get( selectNum-1 );
+					var menuItem = ManagerMain.newMainMenu.get( newMenuId );
+					print_product_list( menuItem.getName(), menuItem.productList );
+					break;
+				}
 			}
 			catch( Exception ex ) {
 				System.out.println( "오류가 발생하였습니다. 다시 시도해 주세요." );

@@ -33,7 +33,6 @@ public class ProductCreation {
 
         System.out.print("새로운 메뉴명입니다. 메뉴 설명을 입력해주세요.\n: ");
         newMenuDesc = scan.nextLine();
-        ManagerMain.mainMenu.put(ManagerMain.menuId++, new String[]{mName, newMenuDesc}); // 신규 메뉴 생성
         inputProduct(); // 상품 입력
         addProNew(); // 신규 메뉴에 상품 추가
     }
@@ -64,20 +63,25 @@ public class ProductCreation {
             case "Burgers":
                 ManagerMain.burgerMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
                 break;
-            case "Forzen Custard":
+            case "Frozen Custard":
                 ManagerMain.frozenCustardMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
                 break;
-            case "drinkMap":
+            case "Drinks":
                 ManagerMain.drinkMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
                 break;
-            case "beerMap":
+            case "Beer":
                 ManagerMain.beerMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
                 break;
+            default: {
+                System.out.println( "잘못된 메뉴명을 입력 하셨습니다." );
+                break;
+            }
         }
     }
 
     private void addProNew(){
-        newProductMap.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc)); // 맵에 새 상품 저장
-        newProductList.add(newProductMap); // 리스트에 맵 저장
+        kiosk.Menu newMenu = new kiosk.Menu( mName, newMenuDesc );
+        newMenu.productList.put(ManagerMain.productID++, new Product(proName, Integer.parseInt(proPrice), proDesc));
+        ManagerMain.newMainMenu.put( ManagerMain.menuId, newMenu );
     }
 }
