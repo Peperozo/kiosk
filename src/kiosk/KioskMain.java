@@ -77,18 +77,17 @@ public class KioskMain {
 						order.addCart( p );
 					}
 				}  else {
-					System.out.println( "상품을 잘못 선택하셨습니다. 다시 확인해 주세요." );
+					System.out.println( "상품을 잘못 선택하셨습니다. 다시 확인해 주세요.\n" );
 				}
 			}
 			catch( Exception ex ) {
-				System.out.println( "오류가 발생하였습니다. 입력을 다시 확인해 주세요." );
+				System.out.println( "오류가 발생하였습니다. 입력을 다시 확인해 주세요.\n" );
 			}
 		}
 	}
 
 	public static void kiosk_main_menu() {
-		boolean running = true;
-		while( running ) {
+		while( true ) {
 			try {
 				print_main_menu();
 				int selectNum = input.nextInt();
@@ -144,7 +143,6 @@ public class KioskMain {
 				} else if(selectNum == menuNum + 3){ // 종료
 					System.out.println( "프로그램을 종료 합니다." );
 					//input.close();
-					running = false;
 					break;
 				} else if(menuIdList.get(selectNum-1) == 9000) { // 기존 메뉴 선택
 					print_product_list("[ Burger MENU ]", ManagerMain.burgerMap);

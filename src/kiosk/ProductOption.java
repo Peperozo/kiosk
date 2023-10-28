@@ -1,6 +1,5 @@
 package kiosk;
 
-
 public class ProductOption implements Cloneable {
 	// 패티, 머스타드, 치즈 등등 제품에 추가 할 수 있는 옵션.
 	private final int price;
