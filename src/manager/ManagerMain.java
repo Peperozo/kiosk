@@ -1,5 +1,6 @@
 package manager;
 
+import kiosk.Menu;
 import kiosk.Order;
 import kiosk.Product;
 
@@ -13,6 +14,7 @@ public class ManagerMain {
 
 	public static List< Order > orderList = new ArrayList<>();
 	public static Map<Integer, String[]> mainMenu = new LinkedHashMap<>(); // 메인 메뉴
+	public static Map<Integer, Menu> newMainMenu = new LinkedHashMap<>(); // 신규 메뉴 추가 부분
 	public static Map<Integer, Product> burgerMap = new LinkedHashMap<>(); // 상품
 	public static Map<Integer, Product> frozenCustardMap = new LinkedHashMap<>();
 	public static Map<Integer, Product> drinkMap = new LinkedHashMap<>();
