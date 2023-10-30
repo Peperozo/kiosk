@@ -2,6 +2,7 @@ package manager;
 
 import kiosk.Order;
 import kiosk.Product;
+import java.time.LocalDateTime;
 
 import java.util.*;
 
@@ -63,8 +64,26 @@ public class ManagerMain {
 
 				// Mark the order as complete
 				order.setState(Order.orderState.complete);
+				order.setCompleteTime();
 
 				System.out.println("주문이 완료 처리되었습니다.");
+				System.out.println("------------------------------ ");
+			}
+		}
+	}
+
+	public static void getCompletedOrders() {
+		System.out.println("----------완료주문 목록---------- ");
+		for (Order order : orderList) {
+			if (order.getState() == Order.orderState.complete) {
+				System.out.println("1. 대기 번호: " + order.getOrderNumber());
+				System.out.println("2. 주문 상품 목록:");
+				for (Product product : order.getOrderedProductList()) {
+					System.out.println("   - " + product.getName() + ": " + product.getDescription());
+				}
+				System.out.println("3. 주문 총 가격: " + order.getTotalPrice());
+				System.out.println("4. 요청 사항: " + order.getOrderReq());
+				System.out.println("5. 완료주문 일시: " + order.getCompleteTime());
 				System.out.println("------------------------------ ");
 			}
 		}
@@ -90,8 +109,9 @@ public class ManagerMain {
 				}
 				break;
 				case 2 : {
-					completeOrders();
+					getCompletedOrders();
 				}
+				break;
 				case 3 : {
 					ProductCreation.createProduct();
 					break;

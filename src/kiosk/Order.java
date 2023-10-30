@@ -63,6 +63,15 @@ public class Order implements Cloneable {
 		return orderTime;
 	}
 
+	private LocalDateTime completeTime;
+
+	public void setCompleteTime() {
+		this.completeTime = LocalDateTime.now();
+	}
+
+	public LocalDateTime getCompleteTime() {
+		return this.completeTime;
+	}
 
 
 	public boolean showOrderList() throws InterruptedException {
