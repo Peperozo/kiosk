@@ -2,7 +2,6 @@ package kiosk;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -64,6 +63,15 @@ public class Order implements Cloneable {
 		return orderTime;
 	}
 
+	private LocalDateTime completeTime;
+
+	public void setCompleteTime() {
+		this.completeTime = LocalDateTime.now();
+	}
+
+	public LocalDateTime getCompleteTime() {
+		return this.completeTime;
+	}
 
 
 	public boolean showOrderList() throws InterruptedException {
